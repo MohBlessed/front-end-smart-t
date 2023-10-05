@@ -1,0 +1,12 @@
+.descend{
+    margin-top: 4%;
+}
+.fa-arrow-left{
+  
+    font-weight: bolder;
+    cursor: pointer;
+    color: green;
+}
+.fa-arrow-left:hover{
+    color: darkblue;
+}
