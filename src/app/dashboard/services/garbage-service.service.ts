@@ -3,9 +3,7 @@ import { Garbagept } from '../classes/garbagept';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const API_URL = 'http://localhost:8080/api/';
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-};
+
 
 
 @Injectable({
@@ -13,20 +11,22 @@ const httpOptions = {
 })
 
 export class GarbageServiceService {
-  search(searchQuery: string) {
-    return this.http.get(`${API_URL}garbage-points?search=${searchQuery}`)  
+  deleteGarbagePoint(id: number) {
+return this.http.delete(`${API_URL}delete/`+id);
+  }
+  search(name: string) {
+    return this.http.get(`${API_URL}garbage-points/search/${name}`); 
   }
   getAllGarbagePts() {
     return this.http.get(`${API_URL}all`);
   }
   constructor(private http: HttpClient) {}
 
-
   postAll(garbagept: Garbagept) {
-    return this.http.post(`${API_URL}add`, garbagept,httpOptions);
+    return this.http.post(`${API_URL}add`, garbagept);
   }
   updategarbagept(id: number, garbagept: Garbagept) {
-    return this.http.put(`${API_URL}users/update/`+id, garbagept);
+    return this.http.put(`${API_URL}update/`+id, garbagept);
   }
   getGarbagePoints(id: number) {
     return this.http.get(`${API_URL}`+ id);

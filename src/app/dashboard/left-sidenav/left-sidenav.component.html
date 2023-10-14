@@ -37,27 +37,21 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="/dashboard/quotemanagement" class="nav-link">
+              <a href="/dashboard/garbagept" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Garbage Points</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="/dashboard/usermanagement" class="nav-link">
+            <li class="nav-item" *ngIf="showAdminBoard">
+              <a href="/dashboard/userList" class="nav-link">
                 <i class="fas fa-users nav-icon"></i>
                 <p>Agents</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/dashboard/usermanagement" class="nav-link">
-                <i class="fas fa-users nav-icon"></i>
-                <p>Admins</p>
               </a>
             </li>
           </ul>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="showAdminBoard">
           <a href="/dashboard/charts" class="nav-link">
             <i class="nav-icon fas fa-chart-pie"></i>
             <p>
@@ -66,7 +60,7 @@
           </a>
         </li>
 
-        <li class="nav-item" *ngIf="showModeratorBoard">
+        <li class="nav-item" *ngIf="showUserBoard">
           <a href="/mod" class="nav-link" routerLink="admin">
             <i class="nav-icon fas fa-chart-pie"></i>
             <p>
@@ -74,35 +68,7 @@
             </p>
           </a>
         </li>
-        <li class="nav-item has-treeview" *ngIf="showModeratorBoard">
-          <a href="#" class="nav-link" routerLink="admin">
-            <i class="fas fa-user nav-icon"></i>
-            <p>
-              User Management
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="/dashboard/userList" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Employee Management</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/dashboard/manager" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Manager Management</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/dashboard/admin" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Admin Management</p>
-              </a>
-            </li>
-          </ul>
-        </li>
+     
         <li class="nav-item">
           <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">
             <i class="nav-icon fas fa-chart-pie"></i>

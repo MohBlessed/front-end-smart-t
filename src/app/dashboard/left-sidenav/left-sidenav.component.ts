@@ -15,8 +15,8 @@ export class LeftSidenavComponent {
   private roles: string[] = [];
   isLoggedIn = false;
   showAdminBoard = false; 
-  showModeratorBoard = false;
   username?: string;
+  showUserBoard: boolean=false;
   
   
   constructor(private authService: AuthService,private route:Router, private eventBusService: EventBusService,  private storageService: StorageService,
@@ -46,7 +46,7 @@ export class LeftSidenavComponent {
       this.roles = user.roles;
   
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_USER');
+      this.showUserBoard = this.roles.includes('ROLE_USER');
   
       this.username = user.username;
     }

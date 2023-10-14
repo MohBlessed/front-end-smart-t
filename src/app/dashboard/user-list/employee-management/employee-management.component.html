@@ -1,34 +1,39 @@
 <div class="content-wrapper descend">
-    <!-- Content Header (Page header) -->
-    <div class="content-header mt-4">
+    <div class="content-header">
         <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark"><i class="fas fa-arrow-left fa-x mr-2"
-                            routerLink="/dashboard/userList"></i></h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">User</li>
+            <div class="row ">
+                <div>
+
+                </div>
+                <h1 class="m-0 text-dark">
+                    <i class="fas fa-arrow-left fa-x mr-2" routerLink="/dashboard/userList"></i>
+                </h1>
+
+                <div class="container text-center">
+                    <ol class="breadcrumb">
+                        <h1 class="m-0 text-dark">
+                            <li class="breadcrumb-item active">Employee Registration Form</li>
+                        </h1>
                     </ol>
                 </div><!-- /.col -->
-                <h1>User's Form</h1>
+
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
+
     </div>
-    <div class="card-body p-1 p-md-5">
-        <h3 class="">Registration Form</h3>
+
+    <div class="card-body  ">
         <form #userForm="ngForm" enctype="multipart/form-data">
+
             <div class="row">
-                <div class="col-md-6 mb-4">
+                <div class="col-md-6 mb-3">
                     <div class="form-group">
                         <input type="text" id="username" [(ngModel)]="users.username" name="username"
                             class="form-control" required />
                         <label class="form-label" for="username">Username</label>
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
+                <div class="col-md-6 mb-3">
                     <div class="form-group">
                         <input type="text" id="firstname" [(ngModel)]="users.firstname" name="firstname"
                             class="form-control" required />
@@ -37,17 +42,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 mb-4">
+                <div class="col-md-6 mb-3">
                     <div class="form-group">
                         <input type="text" id="lastname" [(ngModel)]="users.lastname" name="lastname"
                             class="form-control" required />
                         <label class="form-label" for="lastname">Last Name</label>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-             
-                <div class="col-md-6 mb-4">
+                <div class="col-md-6 mb-3">
                     <div class="form-group">
                         <input type="email" id="email" [(ngModel)]="users.email" name="email" class="form-control"
                             required />
@@ -55,38 +57,38 @@
                     </div>
                 </div>
             </div>
-                <div class="col-md-6 mb-4">
-                    <div class="form-group">
-                        <input type="password" id="password" [(ngModel)]="users.password" name="password"
-                            class="form-control" required />
-                        <label class="form-label" for="password">Password</label>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="form-group">
-                        <input type="text" id="phone" [(ngModel)]="users.phone" name="phone" class="form-control"
-                            required />
-                        <label class="form-label" for="phone">Phone</label>
-                    </div>
-                </div>
             <div class="row">
-                <div class="col-md-6 mb-4">
+               
+                <div class="col-md-6 mb-2">
                     <div class="form-group">
                         <input type="text" id="address" [(ngModel)]="users.address" name="address" class="form-control"
                             required />
                         <label class="form-label" for="address">Address</label>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <div class="form-group">
-                            <select id="role" [(ngModel)]="users.role" name="role" class="form-control" required="true">
-                                <option value="" disabled>Select Role</option>
-                                <option *ngFor="let rol of roles" [value]="[rol]">{{rol}}</option>
-                            </select>
-                            <label class="form-label" for="role">Employee Role</label>
-                        </div>
+                <div class="col-md-6 mb-3">
+                    <div class="form-group">
+                        <input type="number" id="phone" [(ngModel)]="users.phone" name="phone" class="form-control"
+                            required />
+                        <label class="form-label" for="phone">Phone</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3" *ngIf="!read">
+                    <div class="form-group">
+                        <input type="password" id="password" [(ngModel)]="users.password" name="password"
+                            class="form-control" required="true" />
+                        <label class="form-label" for="password">Password</label>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="form-group">
+                        <select id="role" [(ngModel)]="users.roles" name="role" class="form-control" required="true">
+                            <option value="" disabled>Select Role</option>
+                            <option *ngFor="let rol of role" [value]="[rol]">{{rol}}</option>
+                        </select>
+                        <label class="form-label" for="role">Employee Role</label>
                     </div>
                 </div>
                 <div class="container-fluid">

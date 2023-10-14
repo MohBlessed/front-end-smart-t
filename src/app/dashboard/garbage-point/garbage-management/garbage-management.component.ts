@@ -1,46 +1,40 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { UserClass } from '../../classes/user-class';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { Garbagept } from '../../classes/garbagept';
+import { FormBuilder } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { FileHandle } from '../../profile/file-handle';
-import Swal from 'sweetalert2';
-import { UserService } from 'src/app/_services/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/_services/user.service';
+import Swal from 'sweetalert2';
+import { GarbageServiceService } from '../../services/garbage-service.service';
 
 @Component({
-  selector: 'app-employee-management',
-  templateUrl: './employee-management.component.html',
-  styleUrls: ['./employee-management.component.css']
+  selector: 'app-garbage-management',
+  templateUrl: './garbage-management.component.html',
+  styleUrls: ['./garbage-management.component.css']
 })
-export class EmployeeManagementComponent implements OnInit{
-  price: number = 0;
-  role = ['ROLE_ADMIN','ROLE_USER'];
-  actionBtn: string = "Save";
-  users: UserClass = {
-    username: '',
-    firstname: '',
-    lastname: '',
-    email: '',
-    password: '',
-    roles: [],
-    phone: '',
-    address: ''
+export class GarbageManagementComponent {
+  actionBtn="save";
+  garbagept: Garbagept = {
+    name: '',
+    town: '',
+    lat: '',
+    lon: '',
+    createdOn: ''
   }
   id!: number;
   read: boolean=false;
+  allGarbagePts: any;
   
-  constructor( private activatedRoute: ActivatedRoute, private sanitizer: DomSanitizer, private formbuilder: FormBuilder, private http: UserService) { }
+  constructor( private activatedRoute: ActivatedRoute, private sanitizer: DomSanitizer, private formbuilder: FormBuilder, private http: GarbageServiceService) { }
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
       this.read = true;
       this.actionBtn = "Update";
-      this.http.getEmployeeById(this.id).subscribe(
+      this.http.getGarbagePoints(this.id).subscribe(
         (data: any) => {
-          this.users = data;
-          this.users.roles = data.roles[0].name;
-          console.log(this.users);
-
+          this.garbagept = data;
+    
         },
         (error: any) => {
           console.log(error);
@@ -49,14 +43,13 @@ export class EmployeeManagementComponent implements OnInit{
     }
   }
     updateUser(){
-      console.log(this.users);
-      this.http.updateEmployee(this.id,this.users).subscribe({
+      console.log(this.garbagept);
+      this.http.updategarbagept(this.id,this.garbagept).subscribe({
         next: (res: any) => {
           console.log(res);
           Swal.fire({
-            title: 'Employee updated Successfully',
+            title: 'Garbage Point Updated Successfully',
             icon: 'success',
-            text: 'The user has been updated successfully!',
             timer: 3000, // Time in milliseconds (2 seconds in this example)
             timerProgressBar: true, // Show timer progress bar
             showConfirmButton: false, // Hide the "OK" button
@@ -64,7 +57,7 @@ export class EmployeeManagementComponent implements OnInit{
         },
         error: () => {
           Swal.fire({
-            title: 'Failed to update User',
+            title: 'Garbage Point Failed to update',
             icon: 'error',
             timer: 2000, // Time in milliseconds (2 seconds in this example)
             timerProgressBar: true, // Show timer progress bar
@@ -77,9 +70,7 @@ export class EmployeeManagementComponent implements OnInit{
     
     
       saveUser() {
-        if (typeof this.users.roles === 'string') {
-          this.users.roles = [this.users.roles];
-        }
+    
     
         if (this.actionBtn == "Update") {
             this.updateUser();
@@ -87,11 +78,11 @@ export class EmployeeManagementComponent implements OnInit{
     
        
     
-          this.http.postAll(this.users).subscribe({
+          this.http.postAll(this.garbagept).subscribe({
             next: (res: any) => {
               console.log(res);
               Swal.fire({
-                title: 'User Added Successfully',
+                title: 'Garbage Point Added Successfully',
                 icon: 'success',
                 timer: 3000, // Time in milliseconds (2 seconds in this example)
                 timerProgressBar: true, // Show timer progress bar
@@ -100,9 +91,8 @@ export class EmployeeManagementComponent implements OnInit{
             },
             error: () => {
               Swal.fire({
-                title: 'User data not added',
+                title: 'Garbage Point not added',
                 icon: 'error',
-                text: 'The new user data was not added!',
                 timer: 2000, // Time in milliseconds (2 seconds in this example)
                 timerProgressBar: true, // Show timer progress bar
                 showConfirmButton: false, // Hide the "OK" button
@@ -112,4 +102,5 @@ export class EmployeeManagementComponent implements OnInit{
         }
       }
   
-  }
+    }
+  

@@ -12,11 +12,14 @@ import { AdminManagementComponent } from './dashboard/admin-management/admin-man
 import { ChartComponent } from './dashboard/chart/chart.component';
 import { ContentComponent } from './dashboard/content/content.component';
 import { ManagerManagementComponent } from './dashboard/manager-management/manager-management.component';
-import { QuotemanagementComponent } from './dashboard/quotemanagement/quotemanagement.component';
 import { UserListComponent } from './dashboard/user-list/user-list.component';
 import { UsermanagementComponent } from './dashboard/usermanagement/usermanagement.component';
 import { AuthGuard } from './_services/auth.guard';
 import { ProfileComponent } from './dashboard/profile/profile.component';
+import { EmployeeManagementComponent } from './dashboard/user-list/employee-management/employee-management.component';
+import { ViewEmployeeComponent } from './dashboard/user-list/view-employee/view-employee.component';
+import { GarbagePointComponent } from './dashboard/garbage-point/garbage-point.component';
+import { GarbageManagementComponent } from './dashboard/garbage-point/garbage-management/garbage-management.component';
 
 
 const routes: Routes = [
@@ -24,13 +27,17 @@ const routes: Routes = [
     path: 'dashboard', component: DashboardComponent,canActivateChild: [AuthGuard],
     children: [
       { path: 'home', component: ContentComponent },
-      { path: 'usermanagement', component: UsermanagementComponent },
-      { path: 'quotemanagement', component: QuotemanagementComponent },
+      { path: 'employee', component: EmployeeManagementComponent },
+      { path: 'emp/:id', component: EmployeeManagementComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'charts', component: ChartComponent },
       { path: 'manager', component: ManagerManagementComponent },
       { path: 'admin', component: AdminManagementComponent },
-      {path:'userList',component:UserListComponent},
+      { path:'userList',component:UserListComponent},
+      { path:'garbagept', component:GarbagePointComponent},
+      { path:'garbageManagement', component:GarbageManagementComponent},
+      { path:'gpt/:id', component:GarbageManagementComponent},
+      { path: 'viewemp/:id', component: ViewEmployeeComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', redirectTo: 'home', pathMatch: 'full' },
     ]
