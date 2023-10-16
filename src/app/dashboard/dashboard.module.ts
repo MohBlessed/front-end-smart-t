@@ -79,8 +79,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatPaginatorModule,
     MatInputModule,
     MatProgressBarModule
-    
-  ],
+    ],
   exports:[
     DashboardComponent,
     FooterComponent,

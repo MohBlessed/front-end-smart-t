@@ -25,19 +25,7 @@ export class GarbagePointComponent implements OnInit{
     //  })
 
   }
-  initializeMap() {
-    this.map = L.map('map').setView([0, 0], 2); // Initial view
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(this.map);
-
-    this.allGarbagePts.forEach((point: { lat: any; lon: any; name: any; town: any; wasteLevels: any; }) => {
-      L.marker([point.lat, point.lon])
-        .addTo(this.map)
-        .bindPopup(`<b>${point.name}</b><br>${point.town}<br>Waste Levels: ${point.wasteLevels}`);
-    });
-  }
   getAll(){
     const minValue = 0; // Replace with your actual "Min Value"
     const maxValue = 100; // Replace with your actual "Max Value"
@@ -45,7 +33,6 @@ export class GarbagePointComponent implements OnInit{
     this.http.getAllGarbagePts().subscribe(
       (data: any) => {
         this.allGarbagePts = data; 
-        this.initializeMap()
         console.log(this.allGarbagePts);
           this.getAll();
       },
